@@ -3,12 +3,14 @@ extends CharacterBody2D
 const SPEED: int = 90
 const BULLET: PackedScene = preload("res://bullet.tscn")
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
+
+func _input(event: InputEvent) -> void:
+	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT
+		and event.pressed == true):
 		var inst: Bullet = BULLET.instantiate()
 		var start_pos: Vector2 = global_position 
 		var direction: Vector2 = start_pos.direction_to(get_global_mouse_position())
-		get_owner().add_child(inst)
+		get_tree().current_scene.add_child(inst)
 		inst.start(start_pos, direction)
 
 func _physics_process(delta: float) -> void:
