@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=4 uid="uid://d0jsjilaye5bt"]
+[gd_scene load_steps=4 format=4 uid="uid://d0jsjilaye5bt"]
 
 [ext_resource type="PackedScene" uid="uid://ixs0qr8l5iry" path="res://Player.tscn" id="1_88gup"]
 [ext_resource type="PackedScene" uid="uid://clkwhaov1hvt5" path="res://tile_map.tscn" id="2_bisa2"]
+[ext_resource type="PackedScene" uid="uid://6lruswwk3ss6" path="res://ui/ui.tscn" id="3_4o3f6"]
 
 [node name="Room" type="Node2D"]
 
@@ -16,3 +17,5 @@ tile_map_data = PackedByteArray("AAAFAAEAAAABAAAAAAAFAAIAAAABAAAAAAAFAAMAAAABAAA
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_88gup")]
 position = Vector2(151, 90)
 collision_mask = 5
+
+[node name="UI" parent="." instance=ExtResource("3_4o3f6")]
