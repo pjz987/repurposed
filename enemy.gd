@@ -4,6 +4,8 @@ const SPEED = 30
 
 @export var Goal: Node = null
 
+var BLOOD_SPLATTER_SCENE = preload("res://juice/blood_splatter.tscn")
+
 var Knockback: Vector2 = Vector2.ZERO
 var health: int = 20
 
@@ -34,6 +36,17 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Bullet:
 		Knockback = body.init_velocity.rotated(PI) * 0.3
 		health -= 1
+		trigger_blood_splatter(body)
 		# body.queue_free()
 		if health <= 0:
 			queue_free()
+
+func trigger_blood_splatter(body):
+	print(body.velocity)
+	print(body.get_angle_to(global_position))
+	var blood_splatter_scene = BLOOD_SPLATTER_SCENE.instantiate()
+	blood_splatter_scene.global_position = global_position + body.velocity.normalized() * 20
+	#blood_splatter_scene.global_rotation = get_angle_to(body.global_position)
+	#blood_splatter_scene.global_rotation = body.get_angle_to(global_position)
+	blood_splatter_scene.global_rotation = body.velocity.angle() + PI * 0.5
+	get_tree().current_scene.add_child(blood_splatter_scene)
