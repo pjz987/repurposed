@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://6lruswwk3ss6"]
+
+[ext_resource type="FontFile" uid="uid://bwjs58jx0sson" path="res://ui/ThaleahFat.ttf" id="1_vkava"]
+[ext_resource type="Texture2D" uid="uid://bii7ndjgg5hek" path="res://art/bullet.png" id="2_tf0e0"]
+[ext_resource type="Texture2D" uid="uid://nj331f7giipa" path="res://art/metal-1.png" id="3_obcwv"]
+[ext_resource type="Texture2D" uid="uid://uh0o4xu51y1r" path="res://art/oil.png" id="4_bo1jx"]
+
+[sub_resource type="Theme" id="Theme_gycre"]
+default_font = ExtResource("1_vkava")
+
+[sub_resource type="LabelSettings" id="LabelSettings_pa1oa"]
+line_spacing = -6.0
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_gycre")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 266.0
+offset_right = 321.0
+offset_bottom = 39.0
+text = "Bullets
+  X 08
+2  +1  =
+metal
+  x 03
+oil
+  x 05"
+label_settings = SubResource("LabelSettings_pa1oa")
+
+[node name="BulletSprite" type="Sprite2D" parent="Label"]
+position = Vector2(3, 16)
+rotation = -1.5707964
+texture = ExtResource("2_tf0e0")
+
+[node name="BulletSprite2" type="Sprite2D" parent="Label"]
+position = Vector2(50, 25)
+rotation = -1.5707964
+texture = ExtResource("2_tf0e0")
+
+[node name="MetalSprite" type="Sprite2D" parent="Label"]
+position = Vector2(13, 25)
+texture = ExtResource("3_obcwv")
+
+[node name="MetalSprite2" type="Sprite2D" parent="Label"]
+position = Vector2(5, 43)
+texture = ExtResource("3_obcwv")
+
+[node name="OilSprite" type="Sprite2D" parent="Label"]
+position = Vector2(34, 25)
+texture = ExtResource("4_bo1jx")
+
+[node name="OilSprite2" type="Sprite2D" parent="Label"]
+position = Vector2(4, 61)
+texture = ExtResource("4_bo1jx")
