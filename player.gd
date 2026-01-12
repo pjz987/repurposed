@@ -10,6 +10,7 @@ func _input(event: InputEvent) -> void:
 		var inst: Bullet = BULLET.instantiate()
 		var start_pos: Vector2 = global_position 
 		var direction: Vector2 = start_pos.direction_to(get_global_mouse_position())
+		start_pos += 10 * direction
 		get_tree().current_scene.add_child(inst)
 		inst.start(start_pos, direction)
 
