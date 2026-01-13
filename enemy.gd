@@ -7,8 +7,16 @@ const SPEED = 30
 var BLOOD_SPLATTER_SCENE = preload("res://juice/blood_splatter.tscn")
 var PICKUP_SCENE = preload("res://pickups/pickup.tscn")
 
+@onready var health_bar: TextureProgressBar = $HealthBar
+
 var Knockback: Vector2 = Vector2.ZERO
-var health: int = 5
+@export var max_health: int = 10
+var health: int = max_health:
+	set(value):
+		health = value
+		health_bar.value = float(health) / float(max_health)
+		if health <= 0:
+			die()
 
 func _ready() -> void:
 	$NavigationAgent2D.target_position = Goal.global_position
@@ -39,9 +47,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		health -= 1
 		trigger_blood_splatter(body)
 		# body.queue_free()
-		if health <= 0:
-			drop_pickups()
-			queue_free()
 
 func trigger_blood_splatter(body):
 	var blood_splatter_scene = BLOOD_SPLATTER_SCENE.instantiate()
@@ -54,3 +59,7 @@ func drop_pickups():
 	pickup.pickup_type = Pickup.PICKUP_TYPE.OIL
 	get_tree().current_scene.add_child(pickup)
 	pickup.global_position = global_position
+
+func die():
+	drop_pickups()
+	queue_free()
