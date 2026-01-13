@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvp40h8sndowm"]
+[gd_scene load_steps=6 format=3 uid="uid://dvp40h8sndowm"]
 
 [ext_resource type="Script" uid="uid://3feo6i3n7efr" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://dddcfrq468jhm" path="res://art/zombie-1.png" id="2_qi2p4"]
+[ext_resource type="Texture2D" uid="uid://cpgqmbdqtbnhs" path="res://art/healthbar-empty.png" id="3_iifgy"]
+[ext_resource type="Texture2D" uid="uid://t23oi6mmgh2i" path="res://art/healthbar-progress.png" id="4_epg4t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iifgy"]
 
@@ -33,6 +35,18 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_iifgy")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -12.0
+offset_top = -17.0
+offset_right = 12.0
+offset_bottom = -13.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_iifgy")
+texture_progress = ExtResource("4_epg4t")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
