@@ -3,6 +3,17 @@ extends CharacterBody2D
 const SPEED: int = 90
 const BULLET: PackedScene = preload("res://bullet.tscn")
 
+@onready var hurtbox: Area2D = $Hurtbox
+
+var invincible: bool = false
+
+@export var invincibility_timeout: float = 1.0
+@export var max_health: int = 20
+var health: int = max_health:
+	set(value):
+		health = value
+		if health <= 0:
+			die()
 
 func _input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT
@@ -49,3 +60,27 @@ func _physics_process(delta: float) -> void:
 			velocity.y = 0
 
 	move_and_slide()
+
+	check_for_attack()
+
+#func _on_hurtbox_area_entered(area: Area2D) -> void:
+	#print("zombie hit player")
+	#if not invincible:
+		#health -= 1
+	#await get_tree().create_timer(1.0).timeout
+	#invincible = true
+	#print(hurtbox.get_overlapping_areas())
+	
+
+func die():
+	print("player died")
+	queue_free()
+	
+func check_for_attack():
+	if not invincible:
+		if hurtbox.get_overlapping_areas():
+			health -= 1
+			print("took damage")
+			invincible = true
+			await get_tree().create_timer(1.0).timeout
+			invincible = false

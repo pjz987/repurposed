@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvp40h8sndowm"]
+[gd_scene load_steps=7 format=3 uid="uid://dvp40h8sndowm"]
 
 [ext_resource type="Script" uid="uid://3feo6i3n7efr" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://dddcfrq468jhm" path="res://art/zombie-1.png" id="2_qi2p4"]
@@ -7,10 +7,13 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iifgy"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_epg4t"]
+radius = 3.1622777
+
 [node name="Enemy" type="CharacterBody2D"]
 z_index = 2
 collision_layer = 8
-collision_mask = 11
+collision_mask = 9
 script = ExtResource("1_4gyqm")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -47,6 +50,18 @@ value = 1.0
 nine_patch_stretch = true
 texture_under = ExtResource("3_iifgy")
 texture_progress = ExtResource("4_epg4t")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(6, -5)
+shape = SubResource("CircleShape2D_epg4t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(6, 5)
+shape = SubResource("CircleShape2D_epg4t")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
