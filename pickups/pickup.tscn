@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqyot12kmwmxd"]
+
+[ext_resource type="Script" uid="uid://cwnkyk55lm5rd" path="res://pickups/pickup.gd" id="1_0ketk"]
+[ext_resource type="Texture2D" uid="uid://nj331f7giipa" path="res://art/metal-1.png" id="1_ra232"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yv3vu"]
+radius = 5.0
+
+[node name="Pickup" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_0ketk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ra232")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yv3vu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
