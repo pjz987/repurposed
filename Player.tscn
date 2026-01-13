@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ixs0qr8l5iry"]
+[gd_scene load_steps=7 format=3 uid="uid://ixs0qr8l5iry"]
 
 [ext_resource type="Script" uid="uid://bcy21tomkwjjs" path="res://player.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://y8a3qveyy1tj" path="res://art/hero.png" id="2_kpjcp"]
+[ext_resource type="Script" uid="uid://g13lo5tr4wl" path="res://pause_screen.gd" id="3_e80uo"]
+[ext_resource type="PackedScene" uid="uid://biy53dtwvvyuh" path="res://pause_screen.tscn" id="3_kne1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e80uo"]
 radius = 6.0827627
@@ -22,6 +24,17 @@ texture = ExtResource("2_kpjcp")
 shape = SubResource("CircleShape2D_e80uo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PauseScreen" type="Node2D" parent="Camera2D"]
+process_mode = 3
+visible = false
+script = ExtResource("3_e80uo")
+
+[node name="Label" parent="Camera2D/PauseScreen" instance=ExtResource("3_kne1u")]
+offset_left = -15.0
+offset_top = -13.0
+offset_right = 49.0
+offset_bottom = 49.0
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 64

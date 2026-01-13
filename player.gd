@@ -74,6 +74,7 @@ func _physics_process(delta: float) -> void:
 
 func die():
 	print("player died")
+	Globals.hero_alive = false
 	queue_free()
 	
 func check_for_attack():
@@ -82,5 +83,5 @@ func check_for_attack():
 			health -= 1
 			print("took damage")
 			invincible = true
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(invincibility_timeout).timeout
 			invincible = false

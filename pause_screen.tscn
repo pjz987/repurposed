@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://biy53dtwvvyuh"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ka7wq"]
+
+[node name="PauseScreen" type="Control"]
+process_mode = 3
+z_index = -1
+material = SubResource("CanvasItemMaterial_ka7wq")
+layout_mode = 3
+anchors_preset = 0
+offset_left = 112.0
+offset_top = 90.0
+offset_right = 176.0
+offset_bottom = 152.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Hello"
