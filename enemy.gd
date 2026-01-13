@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	if $NavigationAgent2D.target_position != Goal.global_position:
+	if Globals.hero_alive and $NavigationAgent2D.target_position != Goal.global_position:
 		$NavigationAgent2D.target_position = Goal.global_position
 	$Timer.start()
 
