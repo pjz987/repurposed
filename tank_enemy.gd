@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 
 func fire_lightning():
 	var lightning_scene: Lightning = LIGHTNING_SCENE.instantiate()
-	lightning_scene.target_position = to_local(ray_cast_2d.target_position)
+	lightning_scene.target_position = ray_cast_2d.target_position
 	lightning_scene.global_position = lightning_spawn_point.global_position
 	get_tree().current_scene.add_child(lightning_scene)
 

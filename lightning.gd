@@ -11,9 +11,9 @@ var direction: Vector2
 @export var lightning_animation_speed: float = 0.5
 
 func _ready() -> void:
-	direction = global_position.direction_to(target_position)
+	direction = global_position.direction_to(to_global(target_position))
 	velocity = direction * speed
-	rotation = atan2(direction.y, direction.x)
+	rotation = atan2(direction.y, direction.x) - 0.5 * PI
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
