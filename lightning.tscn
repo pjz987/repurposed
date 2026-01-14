@@ -19,6 +19,7 @@ texture = ExtResource("1_cep6t")
 shape = SubResource("CapsuleShape2D_888k8")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

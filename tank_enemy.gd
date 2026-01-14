@@ -1,6 +1,6 @@
 class_name TankEnemy extends CharacterBody2D
 
-const SPEED = 30
+var SPEED = 30
 
 @export var Goal: Node = null
 
@@ -43,10 +43,13 @@ func _physics_process(delta: float) -> void:
 	#print(ray_cast_2d.target_position.length())
 	if ray_cast_2d.target_position.length() < shooting_distance and not ray_cast_2d.is_colliding():
 		if not is_lightning_timeout:
+			SPEED = 0
+			await get_tree().create_timer(0.5).timeout
 			fire_lightning()
 			is_lightning_timeout = true
 			await get_tree().create_timer(lightning_timeout).timeout
 			is_lightning_timeout = false
+			SPEED = 30
 
 func fire_lightning():
 	var lightning_scene: Lightning = LIGHTNING_SCENE.instantiate()
