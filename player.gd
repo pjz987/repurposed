@@ -28,8 +28,10 @@ func _input(event: InputEvent) -> void:
 			start_pos += 10 * direction
 			get_tree().current_scene.add_child(inst)
 			inst.start(start_pos, direction)
+			MasterAudio.gunshot_basic.play()
 			Globals.oil -= 1
 			Globals.metal -= 2
+			
 			print("oil: ",  Globals.oil, "\nmetal: ",  Globals.metal)
 
 		if Globals.active_gun == Globals.Equipped.FISTS:

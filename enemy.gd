@@ -49,6 +49,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		Knockback = body.init_velocity.rotated(PI) * 0.3
 		health -= 1
 		trigger_blood_splatter(body)
+		MasterAudio.zombie_hurt_pistol.play()
 		# body.queue_free()
 
 func trigger_blood_splatter(body):
@@ -70,4 +71,5 @@ func drop_pickups():
 
 func die():
 	drop_pickups()
+	MasterAudio.zombie_death.play()
 	queue_free()
