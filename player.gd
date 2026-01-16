@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 const SPEED: int = 90
 const BULLET: PackedScene = preload("res://bullet.tscn")

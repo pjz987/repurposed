@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://d0jsjilaye5bt"]
+[gd_scene load_steps=6 format=4 uid="uid://d0jsjilaye5bt"]
 
 [ext_resource type="PackedScene" uid="uid://ixs0qr8l5iry" path="res://Player.tscn" id="1_88gup"]
 [ext_resource type="PackedScene" uid="uid://clkwhaov1hvt5" path="res://tile_map.tscn" id="2_bisa2"]
 [ext_resource type="PackedScene" uid="uid://dvp40h8sndowm" path="res://enemy.tscn" id="3_4o3f6"]
+[ext_resource type="PackedScene" uid="uid://2xhjpfyvxma5" path="res://tank_enemy.tscn" id="4_v5vuv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4o3f6"]
 vertices = PackedVector2Array(170, 125, 186, 125, 186, 189, 212, 189, 212, 125, 314, 125, 314, 275, 212, 275, 212, 211, 186, 211, 186, 275, 100, 275, 100, 29, 170, 29)
@@ -31,3 +32,7 @@ Goal = NodePath("../Player")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(1, 8)
 navigation_polygon = SubResource("NavigationPolygon_4o3f6")
+
+[node name="TankEnemy" parent="." node_paths=PackedStringArray("Goal") instance=ExtResource("4_v5vuv")]
+position = Vector2(260, 158)
+Goal = NodePath("../Player")
