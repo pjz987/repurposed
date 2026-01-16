@@ -2,7 +2,6 @@ class_name TankEnemy extends CharacterBody2D
 
 var SPEED = 30
 
-@export var Goal: Node = null
 
 var BLOOD_SPLATTER_SCENE = preload("res://juice/blood_splatter.tscn")
 var PICKUP_SCENE = preload("res://pickups/pickup.tscn")
@@ -14,9 +13,13 @@ var LIGHTNING_SCENE: PackedScene = preload("res://lightning.tscn")
 
 var Knockback: Vector2 = Vector2.ZERO
 var is_lightning_timeout: bool = false
+
+@export var Goal: Node = null
+@export var num_pickup_min: int = 3
+@export var num_pickup_max: int = 10
 @export var lightning_timeout: float = 2.5
 @export var shooting_distance: float = 200.0
-@export var max_health: int = 10
+@export var max_health: int = 20
 var health: int = max_health:
 	set(value):
 		health = value
@@ -76,10 +79,15 @@ func trigger_blood_splatter(body):
 	get_tree().current_scene.add_child(blood_splatter_scene)
 
 func drop_pickups():
-	var pickup: Pickup = PICKUP_SCENE.instantiate() 
-	pickup.pickup_type = Pickup.PICKUP_TYPE.OIL
-	get_tree().current_scene.add_child(pickup)
-	pickup.global_position = global_position
+	var num_of_pickups: int = randi_range(num_pickup_min, num_pickup_max)
+	for num in num_of_pickups:
+		var pickup: Pickup = PICKUP_SCENE.instantiate()
+		if randf() > 0.5:
+			pickup.pickup_type = Pickup.PICKUP_TYPE.OIL
+		else:
+			pickup.pickup_type = Pickup.PICKUP_TYPE.METAL
+		get_tree().current_scene.add_child(pickup)
+		pickup.global_position = global_position + Vector2(randf_range(-20.0, 20.0), randf_range(-20.0, 20.0))
 
 func die():
 	drop_pickups()
