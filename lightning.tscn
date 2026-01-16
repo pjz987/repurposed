@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch41oh3gd3sl6"]
+
+[ext_resource type="Script" uid="uid://dewcr7pe61ba2" path="res://lightning.gd" id="1_888k8"]
+[ext_resource type="Texture2D" uid="uid://ddw1dt47fapcg" path="res://art/lightning.png" id="1_cep6t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_888k8"]
+radius = 2.0
+height = 10.0
+
+[node name="Lightning" type="CharacterBody2D"]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("1_888k8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cep6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_888k8")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
