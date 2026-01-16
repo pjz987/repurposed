@@ -59,6 +59,7 @@ func fire_lightning():
 	lightning_scene.target_position = ray_cast_2d.target_position
 	lightning_scene.global_position = lightning_spawn_point.global_position
 	get_tree().current_scene.add_child(lightning_scene)
+	MasterAudio.tank_shot.play()
 
 func _on_timer_timeout() -> void:
 	if Globals.hero_alive and $NavigationAgent2D.target_position != Goal.global_position:
@@ -70,6 +71,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		Knockback = body.init_velocity.rotated(PI) * 0.3
 		health -= 1
 		trigger_blood_splatter(body)
+		MasterAudio.tank_hurt_pistol.play()
 		# body.queue_free()
 
 func trigger_blood_splatter(body):
@@ -91,4 +93,5 @@ func drop_pickups():
 
 func die():
 	drop_pickups()
+	MasterAudio.tank_death.play()
 	queue_free()
