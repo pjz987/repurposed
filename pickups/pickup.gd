@@ -13,4 +13,8 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print("pickup", pickup_type)
+	if pickup_type == PICKUP_TYPE.METAL:
+		Globals.metal += 1
+	elif pickup_type == PICKUP_TYPE.OIL:
+		Globals.oil += 1
+	queue_free()
