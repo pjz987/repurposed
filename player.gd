@@ -94,6 +94,7 @@ func check_for_attack():
 		if hurtbox.get_overlapping_areas():
 			health -= 1
 			print("took damage")
+			MasterAudio.player_hurt.play()
 			invincible = true
 			await get_tree().create_timer(invincibility_timeout).timeout
 			invincible = false
