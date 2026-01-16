@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcsvxt0b3idgt"]
+[gd_scene load_steps=6 format=3 uid="uid://dcsvxt0b3idgt"]
 
 [ext_resource type="Script" uid="uid://c30jxepmk5wyv" path="res://audio/master_audio.gd" id="1_0rxt1"]
+[ext_resource type="AudioStream" uid="uid://baf7xobl4djp" path="res://audio/OST/WhoseHotlineIsItAnyway-.wav" id="2_q6srr"]
+[ext_resource type="AudioStream" uid="uid://m8uctiaftmp0" path="res://audio/SFX/gunshotbasic.wav" id="3_ghwu2"]
+[ext_resource type="AudioStream" uid="uid://jf0v2p2vwsfd" path="res://audio/SFX/ZombieDeathSound2.wav" id="4_s6prc"]
+[ext_resource type="AudioStream" uid="uid://dh4soj7gsrj65" path="res://audio/SFX/BRS_Stab_Meat_Dull_Juicy.wav" id="5_e3m0t"]
 
 [node name="MasterAudio" type="Node"]
 script = ExtResource("1_0rxt1")
+
+[node name="StageTheme1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_q6srr")
+autoplay = true
+
+[node name="GunshotBasic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ghwu2")
+volume_db = -6.0
+
+[node name="ZombieDeath" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_s6prc")
+volume_db = 3.0
+
+[node name="ZombieHurtPistol" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_e3m0t")
+volume_db = -14.0
