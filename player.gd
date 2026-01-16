@@ -15,15 +15,25 @@ var health: int = max_health:
 		if health <= 0:
 			die()
 
+func _ready() -> void:
+	Globals.refresh_char_sprite.connect(refresh_char_sprite)
+
 func _input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT
 		and event.pressed == true):
-		var inst: Bullet = BULLET.instantiate()
-		var start_pos: Vector2 = global_position 
-		var direction: Vector2 = start_pos.direction_to(get_global_mouse_position())
-		start_pos += 10 * direction
-		get_tree().current_scene.add_child(inst)
-		inst.start(start_pos, direction)
+		if Globals.active_gun == Globals.Equipped.BASIC_GUN:
+			var inst: Bullet = BULLET.instantiate()
+			var start_pos: Vector2 = global_position 
+			var direction: Vector2 = start_pos.direction_to(get_global_mouse_position())
+			start_pos += 10 * direction
+			get_tree().current_scene.add_child(inst)
+			inst.start(start_pos, direction)
+			Globals.oil -= 1
+			Globals.metal -= 2
+			print("oil: ",  Globals.oil, "\nmetal: ",  Globals.metal)
+
+		if Globals.active_gun == Globals.Equipped.FISTS:
+			pass
 
 func _physics_process(delta: float) -> void:
 	
@@ -85,3 +95,10 @@ func check_for_attack():
 			invincible = true
 			await get_tree().create_timer(invincibility_timeout).timeout
 			invincible = false
+
+
+func refresh_char_sprite() -> void:
+	if Globals.active_gun == Globals.Equipped.FISTS:
+		$Sprite2D.texture = load("res://art/hero-unarmed.png")
+	elif Globals.active_gun == Globals.Equipped.BASIC_GUN:
+		$Sprite2D.texture = load("res://art/hero.png")

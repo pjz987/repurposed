@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://biy53dtwvvyuh"]
+[gd_scene load_steps=9 format=3 uid="uid://biy53dtwvvyuh"]
+
+[ext_resource type="Script" uid="uid://g13lo5tr4wl" path="res://pause_screen.gd" id="1_gkx8r"]
+[ext_resource type="FontFile" uid="uid://bwjs58jx0sson" path="res://ui/ThaleahFat.ttf" id="1_rbgr5"]
+[ext_resource type="Texture2D" uid="uid://nj331f7giipa" path="res://art/metal-1.png" id="3_cfagd"]
+[ext_resource type="Texture2D" uid="uid://uh0o4xu51y1r" path="res://art/oil.png" id="4_kt88e"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ka7wq"]
+
+[sub_resource type="Theme" id="Theme_nei6f"]
+default_font = ExtResource("1_rbgr5")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nei6f"]
+bg_color = Color(0.021569123, 0.021569123, 0.021569123, 0.31764707)
+
+[sub_resource type="LabelSettings" id="LabelSettings_odlcw"]
+line_spacing = -4.0
 
 [node name="PauseScreen" type="Control"]
 process_mode = 3
@@ -8,13 +22,87 @@ z_index = -1
 material = SubResource("CanvasItemMaterial_ka7wq")
 layout_mode = 3
 anchors_preset = 0
-offset_left = 112.0
-offset_top = 90.0
-offset_right = 176.0
-offset_bottom = 152.0
+offset_right = 320.0
+offset_bottom = 176.0
+theme = SubResource("Theme_nei6f")
+script = ExtResource("1_gkx8r")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Hello"
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 312.0
+offset_bottom = 176.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_nei6f")
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 248.0
+offset_right = 320.0
+offset_bottom = 15.0
+text = "Cost"
+
+[node name="Equipped" type="VBoxContainer" parent="Label"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 72.0
+offset_bottom = 96.0
+
+[node name="Weapon" type="Label" parent="Label/Equipped"]
+layout_mode = 2
+text = "Basic
+Gun"
+
+[node name="Recipe" type="VBoxContainer" parent="Label"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 16.0
+offset_right = 208.0
+offset_bottom = 56.0
+
+[node name="Unarmed" type="Button" parent="Label/Recipe"]
+layout_mode = 2
+text = "Unarmed
+"
+
+[node name="Label" type="Label" parent="Label/Recipe/Unarmed"]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 120.0
+offset_bottom = 40.0
+text = "00
+00"
+label_settings = SubResource("LabelSettings_odlcw")
+
+[node name="MetalSprite" type="Sprite2D" parent="Label/Recipe/Unarmed"]
+position = Vector2(100, 7)
+texture = ExtResource("3_cfagd")
+
+[node name="OilSprite" type="Sprite2D" parent="Label/Recipe/Unarmed"]
+position = Vector2(101, 19)
+texture = ExtResource("4_kt88e")
+
+[node name="Basic Gun" type="Button" parent="Label/Recipe"]
+layout_mode = 2
+text = "Basic Gun"
+
+[node name="Label" type="Label" parent="Label/Recipe/Basic Gun"]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 120.0
+offset_bottom = 40.0
+text = "10
+05"
+label_settings = SubResource("LabelSettings_odlcw")
+
+[node name="MetalSprite" type="Sprite2D" parent="Label/Recipe/Basic Gun"]
+position = Vector2(100, 7)
+texture = ExtResource("3_cfagd")
+
+[node name="OilSprite" type="Sprite2D" parent="Label/Recipe/Basic Gun"]
+position = Vector2(101, 19)
+texture = ExtResource("4_kt88e")
+
+[connection signal="pressed" from="Label/Recipe/Unarmed" to="." method="_on_unarmed_pressed"]
+[connection signal="pressed" from="Label/Recipe/Basic Gun" to="." method="_on_basic_gun_pressed"]
