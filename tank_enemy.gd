@@ -3,7 +3,7 @@ class_name TankEnemy extends CharacterBody2D
 var SPEED = 30
 
 
-var BLOOD_SPLATTER_SCENE = preload("res://juice/blood_splatter.tscn")
+var OIL_SPLATTER_SCENE = preload("res://juice/oil_splatter.tscn")
 var PICKUP_SCENE = preload("res://pickups/pickup.tscn")
 var LIGHTNING_SCENE: PackedScene = preload("res://lightning.tscn")
 
@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	if !$NavigationAgent2D.is_target_reached():
 		velocity = nav_point_direction * SPEED
 		if Knockback != Vector2.ZERO:
-			velocity -= Knockback
+			#velocity -= Knockback
 			Knockback *= 0.9
 			if Knockback.length() < .2:
 				Knockback = Vector2.ZERO
@@ -73,10 +73,10 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		# body.queue_free()
 
 func trigger_blood_splatter(body):
-	var blood_splatter_scene = BLOOD_SPLATTER_SCENE.instantiate()
-	blood_splatter_scene.global_position = global_position + body.velocity.normalized() * 20
-	blood_splatter_scene.global_rotation = body.velocity.angle() + PI * 0.5
-	get_tree().current_scene.add_child(blood_splatter_scene)
+	var oil_splatter_scene = OIL_SPLATTER_SCENE.instantiate()
+	oil_splatter_scene.global_position = global_position + body.velocity.normalized() * 10
+	oil_splatter_scene.global_rotation = body.velocity.angle() + PI * 0.5
+	get_tree().current_scene.add_child(oil_splatter_scene)
 
 func drop_pickups():
 	var num_of_pickups: int = randi_range(num_pickup_min, num_pickup_max)

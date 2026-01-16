@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c36p04goyetgt"]
+
+[ext_resource type="Texture2D" uid="uid://ct5euqdb0co10" path="res://art/oil-1.png" id="1_e3xmc"]
+[ext_resource type="Script" uid="uid://d1pk8vvl67wfs" path="res://juice/oil_splatter.gd" id="2_e3xmc"]
+
+[node name="OilSplatter" type="Sprite2D"]
+z_index = 1
+texture = ExtResource("1_e3xmc")
+offset = Vector2(0, -5)
+script = ExtResource("2_e3xmc")
