@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Repurpose"
-run/main_scene="res://room.tscn"
+run/main_scene="uid://3usvht6ajbra"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -27,6 +27,8 @@ window/size/viewport_height=180
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://q0s6jgf44g8w"
+mouse_cursor/custom_image_hotspot=Vector2(13, 13)
 
 [input]
 

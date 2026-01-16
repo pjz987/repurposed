@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://cj5xb3twf787x"]
+
+[ext_resource type="FontFile" uid="uid://bwjs58jx0sson" path="res://ui/ThaleahFat.ttf" id="1_f6coy"]
+[ext_resource type="Texture2D" uid="uid://nj331f7giipa" path="res://art/metal-1.png" id="1_q1pps"]
+[ext_resource type="Script" uid="uid://cfndfpfcj8n05" path="res://resource_icons.gd" id="2_hdee6"]
+[ext_resource type="Texture2D" uid="uid://uh0o4xu51y1r" path="res://art/oil.png" id="3_0cbb0"]
+[ext_resource type="Texture2D" uid="uid://cpgqmbdqtbnhs" path="res://art/healthbar-empty.png" id="5_grkwc"]
+[ext_resource type="Texture2D" uid="uid://t23oi6mmgh2i" path="res://art/healthbar-progress.png" id="6_xr205"]
+
+[sub_resource type="Theme" id="Theme_0cbb0"]
+default_font = ExtResource("1_f6coy")
+default_font_size = 12
+
+[node name="Resource_Icons" type="Control"]
+z_index = 100
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 32.0
+theme = SubResource("Theme_0cbb0")
+script = ExtResource("2_hdee6")
+
+[node name="Metal_Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 190.0
+offset_right = 238.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 16
+text = "000"
+
+[node name="Sprite2D" type="Sprite2D" parent="Metal_Label"]
+position = Vector2(-5, 7)
+texture = ExtResource("1_q1pps")
+
+[node name="Oil_Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 238.0
+offset_right = 286.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 16
+text = "000"
+
+[node name="Sprite2D" type="Sprite2D" parent="Oil_Label"]
+position = Vector2(-5, 7)
+texture = ExtResource("3_0cbb0")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 3.0
+offset_right = 311.0
+offset_bottom = 11.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_grkwc")
+texture_progress = ExtResource("6_xr205")

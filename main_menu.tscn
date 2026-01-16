@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://3usvht6ajbra"]
+
+[ext_resource type="Script" uid="uid://bhhfo4uxqp7vf" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="PackedScene" uid="uid://cj5xb3twf787x" path="res://resource_icons.tscn" id="2_7vrkn"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_06t4h")
+
+[node name="Resource_Icons" parent="." instance=ExtResource("2_7vrkn")]
+layout_mode = 0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 184.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 304.0
+offset_bottom = 100.0
+alignment = 1
+
+[node name="Button" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Level 1"
+
+[node name="Button2" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Level 2"
+
+[node name="Button3" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Level 3"
+
+[connection signal="pressed" from="Panel/HBoxContainer/Button" to="." method="start_level_1"]

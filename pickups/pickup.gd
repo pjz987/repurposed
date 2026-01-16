@@ -14,9 +14,9 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if pickup_type == PICKUP_TYPE.METAL:
-		Globals.metal += 1
+		Globals.metal += 20
 		MasterAudio.get_metal.play()
 	elif pickup_type == PICKUP_TYPE.OIL:
-		Globals.oil += 1
+		Globals.oil += 10
 		MasterAudio.get_oil.play()
 	queue_free()

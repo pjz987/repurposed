@@ -1,10 +1,21 @@
 extends Node
 
+var hero: Player
+
 var hero_alive: bool = true
-var metal: int = 100
-var oil: int = 50
+
+var metal: int = 100:
+	set(in_num):
+		metal = in_num
+		refresh_resource_icons.emit()
+
+var oil: int = 50:
+	set(in_num):
+		oil = in_num
+		refresh_resource_icons.emit()
 
 signal refresh_char_sprite
+signal refresh_resource_icons
 
 enum Equipped {
 	FISTS,

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ixs0qr8l5iry"]
+[gd_scene load_steps=8 format=3 uid="uid://ixs0qr8l5iry"]
 
 [ext_resource type="Script" uid="uid://bcy21tomkwjjs" path="res://player.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://y8a3qveyy1tj" path="res://art/hero.png" id="2_kpjcp"]
 [ext_resource type="Script" uid="uid://cd1ifm8cwu7b8" path="res://camera_2d.gd" id="3_e80uo"]
 [ext_resource type="PackedScene" uid="uid://biy53dtwvvyuh" path="res://pause_screen.tscn" id="3_kne1u"]
+[ext_resource type="PackedScene" uid="uid://cj5xb3twf787x" path="res://resource_icons.tscn" id="4_cxr5p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e80uo"]
 radius = 6.0827627
@@ -25,6 +26,12 @@ shape = SubResource("CircleShape2D_e80uo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_e80uo")
+
+[node name="Resource_Icons" parent="Camera2D" instance=ExtResource("4_cxr5p")]
+offset_left = -160.0
+offset_top = -88.0
+offset_right = 160.0
+offset_bottom = -56.0
 
 [node name="PauseScreen" type="Node2D" parent="Camera2D"]
 process_mode = 3

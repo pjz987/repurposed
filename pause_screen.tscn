@@ -18,7 +18,7 @@ line_spacing = -4.0
 
 [node name="PauseScreen" type="Control"]
 process_mode = 3
-z_index = -1
+z_index = 5
 material = SubResource("CanvasItemMaterial_ka7wq")
 layout_mode = 3
 anchors_preset = 0

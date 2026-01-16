@@ -1,6 +1,8 @@
 class_name Player extends CharacterBody2D
 
-const SPEED: int = 90
+const BASE_SPEED: int = 90
+const STUN_SPEED: int = 60
+var SPEED: int = BASE_SPEED
 const BULLET: PackedScene = preload("res://bullet.tscn")
 
 @onready var hurtbox: Area2D = $Hurtbox
@@ -12,11 +14,13 @@ var invincible: bool = false
 var health: int = max_health:
 	set(value):
 		health = value
+		Globals.refresh_resource_icons.emit()
 		if health <= 0:
 			die()
 
 func _ready() -> void:
 	Globals.refresh_char_sprite.connect(refresh_char_sprite)
+	Globals.hero = self
 
 func _input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT
@@ -92,13 +96,23 @@ func die():
 func check_for_attack():
 	if not invincible:
 		if hurtbox.get_overlapping_areas():
+			var overlapping_nodes = hurtbox.get_overlapping_areas()
+
+				
 			health -= 1
 			print("took damage")
 			MasterAudio.player_hurt.play()
 			invincible = true
+			for item in overlapping_nodes:
+				if item.get_parent() is Lightning:
+					handle_stun()
 			await get_tree().create_timer(invincibility_timeout).timeout
 			invincible = false
 
+func handle_stun() -> void:
+	SPEED = STUN_SPEED
+	await get_tree().create_timer(0.5).timeout
+	SPEED = BASE_SPEED
 
 func refresh_char_sprite() -> void:
 	if Globals.active_gun == Globals.Equipped.FISTS:
