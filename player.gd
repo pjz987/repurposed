@@ -25,19 +25,27 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT
 		and event.pressed == true):
-		if Globals.active_gun == Globals.Equipped.BASIC_GUN:
-			var inst: Bullet = BULLET.instantiate()
+		if Globals.check_afford_bullet():
+			Globals.pay_for_bullet()
 			var start_pos: Vector2 = global_position 
 			var direction: Vector2 = start_pos.direction_to(get_global_mouse_position())
 			start_pos += 10 * direction
+			var inst: Node2D
+			match(Globals.active_gun):
+				Globals.Equipped.FISTS:
+					inst = BULLET.instantiate()
+				Globals.Equipped.BASIC_GUN:
+					MasterAudio.gunshot_basic.play()
+					inst = BULLET.instantiate()
+				Globals.Equipped.SHOTGUN:
+					inst = BULLET.instantiate()
+				Globals.Equipped.GRENADE_LAUNCHER:
+					inst = BULLET.instantiate()
+				Globals.Equipped.FLAMETHROWER:
+					inst = BULLET.instantiate()
 			get_tree().current_scene.add_child(inst)
 			inst.start(start_pos, direction)
-			MasterAudio.gunshot_basic.play()
-			Globals.oil -= 1
-			Globals.metal -= 2
 			
-			print("oil: ",  Globals.oil, "\nmetal: ",  Globals.metal)
-
 		if Globals.active_gun == Globals.Equipped.FISTS:
 			pass
 
